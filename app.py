@@ -40,7 +40,10 @@ if st.button("🚀 开始监测"):
             
             response = client.chat.completions.create(
                 model="deepseek-chat",
-                messages=[{"role": "user", "content": q}]
+                messages=[
+                    {"role": "system", "content": "你是一个严谨的搜索推荐引擎。在回答的最后，必须用列表形式提供真实的参考网址链接（以 http 开头），严禁编造。"},
+                    {"role": "user", "content": q}
+                ]
             )
             answer = response.choices[0].message.content
             
